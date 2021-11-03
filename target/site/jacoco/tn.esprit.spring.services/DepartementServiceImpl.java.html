@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>DepartementServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.services</a> &gt; <span class="el_source">DepartementServiceImpl.java</span></div><h1>DepartementServiceImpl.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.services;
+
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.spring.entities.Departement;
+
+import tn.esprit.spring.repository.DepartementRepository;
+
+
+@Service
+<span class="fc" id="L16">public class DepartementServiceImpl implements IDepartementService {</span>
+@Autowired
+DepartementRepository dep_rep;
+<span class="fc" id="L19">	private static final Logger l = LogManager.getLogger(UserServiceImpl.class);</span>
+	@Override
+	public List&lt;Departement&gt; retrieveAllDepartements() {
+		
+<span class="fc" id="L23">		List&lt;Departement&gt; Departements = null;</span>
+		try {
+
+<span class="fc" id="L26">			l.info(&quot;In retrieveAllDepartements() : &quot;);</span>
+<span class="fc" id="L27">			Departements = (List&lt;Departement&gt;) dep_rep.findAll();  </span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">			for (Departement dep : Departements) {</span>
+<span class="fc" id="L29">				l.debug(&quot;user +++ : &quot; + dep);</span>
+<span class="fc" id="L30">			} </span>
+<span class="fc" id="L31">			l.info(&quot;Out of retrieveAllDepartements() : &quot;);</span>
+<span class="nc" id="L32">		}catch (Exception e) {</span>
+<span class="nc" id="L33">			l.error(&quot;Error in retrieveAllDepartements() : &quot; + e);</span>
+<span class="fc" id="L34">		}</span>
+
+<span class="fc" id="L36">		return Departements;</span>
+	}
+
+	@Override
+	public Departement addDepartement(Departement dep) {
+		try{
+<span class="fc" id="L42">			l.info(&quot;Adding Employe To Data Base :&quot;);</span>
+<span class="fc" id="L43">			return dep_rep.save(dep);</span>
+<span class="nc" id="L44">		}catch (Exception e) {</span>
+<span class="nc" id="L45">			return null;</span>
+		}
+	}
+	
+
+	@Override
+	public void deleteDepartement(int id) {
+		
+		try{
+<span class="fc" id="L54">			l.info(&quot;Finding Department with id = %d&quot;,id);</span>
+<span class="fc" id="L55">			dep_rep.deleteById(id);</span>
+<span class="fc" id="L56">			l.info(&quot;Department Deleted Successfuly &quot;);</span>
+<span class="nc" id="L57">		}catch (Exception e) {</span>
+
+<span class="nc" id="L59">			l.error(&quot;The Department with id = %d does not Exist&quot;,id);</span>
+<span class="fc" id="L60">		}</span>
+		
+<span class="fc" id="L62">	}</span>
+
+	@Override
+	public Departement updateDepartement(Departement dep) {
+		
+<span class="fc" id="L67">		dep_rep.save(dep);</span>
+<span class="fc" id="L68">		return dep;</span>
+	}
+
+	@Override
+	public Departement retrieveDepartementByid(int id) {
+<span class="fc" id="L73">		l.info(&quot;in  retrieveDepartementByid id = &quot; + id);</span>
+<span class="fc" id="L74">		Departement d =  dep_rep.findById(id).orElse(null); </span>
+<span class="fc" id="L75">		l.info(&quot;Employe found : &quot; + d);</span>
+<span class="fc" id="L76">		return d; </span>
+		
+	}
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>

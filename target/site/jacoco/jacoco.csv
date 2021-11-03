@@ -1,0 +1,17 @@
+GROUP,PACKAGE,CLASS,INSTRUCTION_MISSED,INSTRUCTION_COVERED,BRANCH_MISSED,BRANCH_COVERED,LINE_MISSED,LINE_COVERED,COMPLEXITY_MISSED,COMPLEXITY_COVERED,METHOD_MISSED,METHOD_COVERED
+timesheet-ci,tn.esprit.spring,TimesheetApplication,5,3,0,0,1,1,1,1,1,1
+timesheet-ci,tn.esprit.spring.services,MissionServiceImpl,38,85,1,1,9,20,1,7,0,7
+timesheet-ci,tn.esprit.spring.services,EmployeServiceImpl,24,106,0,2,6,24,0,8,0,7
+timesheet-ci,tn.esprit.spring.services,DepartementServiceImpl,20,106,0,2,6,24,0,8,0,7
+timesheet-ci,tn.esprit.spring.services,UserServiceImpl,11,105,0,2,2,20,0,8,0,7
+timesheet-ci,tn.esprit.spring.services,EntrepriseServiceImpl,23,100,0,2,7,22,0,8,0,7
+timesheet-ci,tn.esprit.spring.entities,Contrat,47,3,0,0,20,2,11,1,11,1
+timesheet-ci,tn.esprit.spring.entities,Employe,105,73,0,0,43,14,19,6,19,6
+timesheet-ci,tn.esprit.spring.entities,Timesheet,31,0,0,0,13,0,9,0,9,0
+timesheet-ci,tn.esprit.spring.entities,TimesheetPK,159,0,26,0,49,0,25,0,12,0
+timesheet-ci,tn.esprit.spring.entities,Role,0,44,0,0,0,2,0,1,0,1
+timesheet-ci,tn.esprit.spring.entities,MissionExterne,25,3,0,0,10,2,5,1,5,1
+timesheet-ci,tn.esprit.spring.entities,Entreprise,27,32,0,0,11,11,6,5,6,5
+timesheet-ci,tn.esprit.spring.entities,Departement,25,19,0,0,11,9,7,5,7,5
+timesheet-ci,tn.esprit.spring.entities,Mission,25,22,0,0,11,10,7,5,7,5
+timesheet-ci,tn.esprit.spring.entities,User,22,74,0,0,10,17,6,6,6,6

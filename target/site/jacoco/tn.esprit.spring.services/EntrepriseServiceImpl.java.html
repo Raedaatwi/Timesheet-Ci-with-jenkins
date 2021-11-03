@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd"><html xmlns="http://www.w3.org/1999/xhtml" lang="fr"><head><meta http-equiv="Content-Type" content="text/html;charset=UTF-8"/><link rel="stylesheet" href="../jacoco-resources/report.css" type="text/css"/><link rel="shortcut icon" href="../jacoco-resources/report.gif" type="image/gif"/><title>EntrepriseServiceImpl.java</title><link rel="stylesheet" href="../jacoco-resources/prettify.css" type="text/css"/><script type="text/javascript" src="../jacoco-resources/prettify.js"></script></head><body onload="window['PR_TAB_WIDTH']=4;prettyPrint()"><div class="breadcrumb" id="breadcrumb"><span class="info"><a href="../jacoco-sessions.html" class="el_session">Sessions</a></span><a href="../index.html" class="el_report">timesheet-ci</a> &gt; <a href="index.source.html" class="el_package">tn.esprit.spring.services</a> &gt; <span class="el_source">EntrepriseServiceImpl.java</span></div><h1>EntrepriseServiceImpl.java</h1><pre class="source lang-java linenums">package tn.esprit.spring.services;
+
+import java.util.List;
+
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import tn.esprit.spring.entities.Employe;
+import tn.esprit.spring.entities.Entreprise;
+import tn.esprit.spring.entities.User;
+import tn.esprit.spring.repository.EntrepriseRepository;
+
+@Service
+<span class="fc" id="L16">public class EntrepriseServiceImpl implements IEntrepriseServes {</span>
+<span class="fc" id="L17">	private static final Logger l = LogManager.getLogger(UserServiceImpl.class);</span>
+    @Autowired
+    EntrepriseRepository ent_repo;
+	@Override
+	public List&lt;Entreprise&gt; retrieveAllEntreprise() {
+
+<span class="fc" id="L23">		List&lt;Entreprise&gt; Entreprises = null;</span>
+		try {
+
+<span class="fc" id="L26">			l.info(&quot;entre dans  retrieveAllEntrprise  () : &quot;);</span>
+<span class="fc" id="L27">			Entreprises = (List&lt;Entreprise&gt;) ent_repo.findAll();  </span>
+<span class="fc bfc" id="L28" title="All 2 branches covered.">			for (Entreprise et : Entreprises) {</span>
+<span class="fc" id="L29">				l.debug(&quot;user +++ : &quot; + et);</span>
+<span class="fc" id="L30">			} </span>
+<span class="fc" id="L31">			l.info(&quot;fonction retrieveAllentreprise termine () : &quot;);</span>
+<span class="nc" id="L32">		}catch (Exception e) {</span>
+<span class="nc" id="L33">			l.error(&quot;Error  dans  retrieveAllEntreprise() : &quot; + e);</span>
+<span class="fc" id="L34">		}</span>
+
+<span class="fc" id="L36">		return Entreprises;</span>
+		
+	}
+
+	@Override
+	public Entreprise addEntreprise(Entreprise en) {
+		try{
+<span class="fc" id="L43">			l.info(&quot; ajout de l'entreprise  :&quot;);</span>
+<span class="fc" id="L44">			return ent_repo.save(en);</span>
+<span class="nc" id="L45">		}catch (Exception e) {</span>
+
+<span class="nc" id="L47">			l.error(&quot;Error dans l'ajout d'entreprise &quot;);</span>
+
+<span class="nc" id="L49">			return null;</span>
+		}
+
+	}
+
+	@Override
+	public void deleteEntreprise(int id) {
+		try{
+		
+<span class="fc" id="L58">			ent_repo.deleteById(id);</span>
+<span class="fc" id="L59">			l.info(&quot;entreprise a ete supprimer &quot;);</span>
+<span class="nc" id="L60">		}catch (Exception e) {</span>
+
+<span class="nc" id="L62">			l.error(&quot;The entreprise  with id = %d does not Exist&quot;,id);</span>
+<span class="fc" id="L63">		}</span>
+		
+<span class="fc" id="L65">	}</span>
+
+	@Override
+	public Entreprise updateEntreprise(Entreprise en) {
+<span class="fc" id="L69">		return ent_repo.save(en);</span>
+		
+	}
+
+	@Override
+	public Entreprise retrieveEntreprise(int id) {
+<span class="fc" id="L75">		l.info(&quot;in  retrieveEntreprise id = &quot; + id);</span>
+		//orElse(null);
+		 
+<span class="fc" id="L78">		Entreprise E=  ent_repo.findById(id).orElse(null);</span>
+<span class="fc" id="L79">		l.info(&quot;Entreprise returned : &quot; + E);</span>
+<span class="fc" id="L80">		return E; </span>
+	}
+	
+	
+
+}
+</pre><div class="footer"><span class="right">Created with <a href="http://www.jacoco.org/jacoco">JaCoCo</a> 0.8.6.202009150832</span></div></body></html>
